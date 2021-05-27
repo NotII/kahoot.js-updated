@@ -11,64 +11,64 @@
  * @property {Number} streak The answer streak of the client
  * @property {Number} rank The position of the client.
  */
-module.exports = function(){
-  const self = this;
-  this.data.totalScore = 0;
-  this.data.streak = 0;
-  this.data.rank = 1;
-  this.on("GameReset",()=>{
-    this.data.totalScore = 0;
-    this.data.rank = 0;
-    this.data.streak = 0;
-    delete this.quiz;
-  });
-  this.on("QuestionStart",(event)=>{
-    Object.assign(event,{
-      get answer(){
-        return self.answer;
-      },
-      get type(){
-        return event.type;
-      },
-      get index(){
-        return event.questionIndex;
-      }
-    });
-    try{
-      Object.assign(self.quiz.currentQuestion,event);
-    }catch(e){}
-  });
-  this.on("QuizStart",(event)=>{
-    Object.assign(event,{
-      get questionCount(){
-        return event.quizQuestionAnswers.length;
-      }
-    });
-    try{
-      Object.assign(self.quiz,event);
-    }catch(e){}
-  });
-  this.on("QuestionReady",(event)=>{
-    Object.assign(event,{
-      get type(){
-        return event.gameBlockType;
-      },
-      get index(){
-        return event.questionIndex;
-      }
-    });
-    try{
-      Object.assign(self.quiz.currentQuestion,event);
-    }catch(e){}
-  });
-  this.on("QuestionEnd",(event)=>{
-    if(event.hasAnswer === false){
-      return;
-    }
-    this.data.totalScore = event.totalScore;
-    this.data.streak = event.pointsData.answerStreakPoints.streakLevel;
-    this.data.rank = event.rank;
-  });
+module.exports = function () {
+	const self = this;
+	this.data.totalScore = 0;
+	this.data.streak = 0;
+	this.data.rank = 1;
+	this.on("GameReset", () => {
+		this.data.totalScore = 0;
+		this.data.rank = 0;
+		this.data.streak = 0;
+		delete this.quiz;
+	});
+	this.on("QuestionStart", (event) => {
+		Object.assign(event, {
+			get answer() {
+				return self.answer;
+			},
+			get type() {
+				return event.type;
+			},
+			get index() {
+				return event.questionIndex;
+			},
+		});
+		try {
+			Object.assign(self.quiz.currentQuestion, event);
+		} catch (e) {}
+	});
+	this.on("QuizStart", (event) => {
+		Object.assign(event, {
+			get questionCount() {
+				return event.quizQuestionAnswers.length;
+			},
+		});
+		try {
+			Object.assign(self.quiz, event);
+		} catch (e) {}
+	});
+	this.on("QuestionReady", (event) => {
+		Object.assign(event, {
+			get type() {
+				return event.gameBlockType;
+			},
+			get index() {
+				return event.questionIndex;
+			},
+		});
+		try {
+			Object.assign(self.quiz.currentQuestion, event);
+		} catch (e) {}
+	});
+	this.on("QuestionEnd", (event) => {
+		if (event.hasAnswer === false) {
+			return;
+		}
+		this.data.totalScore = event.totalScore;
+		this.data.streak = event.pointsData.answerStreakPoints.streakLevel;
+		this.data.rank = event.rank;
+	});
 };
 
 /**

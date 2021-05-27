@@ -11,12 +11,12 @@
 	},
 	"rules": {
 		"semi": ["error", "always"],
-		"no-constant-condition": ["error", {"checkLoops": false}],
-		"no-unused-vars": ["error", {"args": "none"}],
+		"no-constant-condition": ["error", { "checkLoops": false }],
+		"no-unused-vars": ["error", { "args": "none" }],
 		"no-empty": "off",
 		"no-control-regex": "off",
-		"indent": ["error", 2, {"SwitchCase": 1}],
-		"quotes": ["error", "double", {"avoidEscape": true}]
+		"indent": ["error", 2, { "SwitchCase": 1 }],
+		"quotes": ["error", "double", { "avoidEscape": true }]
 	},
 	"overrides": [
 		{

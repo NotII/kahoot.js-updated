@@ -2,36 +2,38 @@
  * @fileinfo This is the questionEnd module
  * - Loads the QuestionEnd event
  */
-module.exports = function(){
-
-  /**
-   * questionEnd - Handles the QuestionEnd event
-   * @param {Object} message The websocket message
-   */
-  this.handlers.questionEnd = (message)=>{
-    if(message.channel === "/service/player" && message.data && message.data.id === 8){
-
-      /**
-       * An event emitted at the end of the question. Contains ranking information.
-       *
-       * @event Client#QuestionEnd
-       * @type {Object}
-       * @property {(Number|Number[]|String)} choice The answer from the client
-       * @property {String} type The question type
-       * @property {Boolean} isCorrect Whether the client answered the question correctly
-       * @property {String} text The text content of answers sent by the client
-       * @property {Number} receivedTime The time (ms) when the answer was received
-       * @property {Booean} pointsQuestion Whether the question offered points
-       * @property {Number} points The amount of points earned from the question
-       * @property {Number[]} correctChoices A list of the indexes of correct choices (used in multi select quizzes)
-       * @property {Number} totalScore The total score of the client
-       * @property {Number} rank The current position of the client
-       * @property {PointsData} pointsData Extra information about the points data
-       * @property {Nemesis} nemesis The nemesis
-       */
-      this._emit("QuestionEnd",JSON.parse(message.data.content));
-    }
-  };
+module.exports = function () {
+	/**
+	 * questionEnd - Handles the QuestionEnd event
+	 * @param {Object} message The websocket message
+	 */
+	this.handlers.questionEnd = (message) => {
+		if (
+			message.channel === "/service/player" &&
+			message.data &&
+			message.data.id === 8
+		) {
+			/**
+			 * An event emitted at the end of the question. Contains ranking information.
+			 *
+			 * @event Client#QuestionEnd
+			 * @type {Object}
+			 * @property {(Number|Number[]|String)} choice The answer from the client
+			 * @property {String} type The question type
+			 * @property {Boolean} isCorrect Whether the client answered the question correctly
+			 * @property {String} text The text content of answers sent by the client
+			 * @property {Number} receivedTime The time (ms) when the answer was received
+			 * @property {Booean} pointsQuestion Whether the question offered points
+			 * @property {Number} points The amount of points earned from the question
+			 * @property {Number[]} correctChoices A list of the indexes of correct choices (used in multi select quizzes)
+			 * @property {Number} totalScore The total score of the client
+			 * @property {Number} rank The current position of the client
+			 * @property {PointsData} pointsData Extra information about the points data
+			 * @property {Nemesis} nemesis The nemesis
+			 */
+			this._emit("QuestionEnd", JSON.parse(message.data.content));
+		}
+	};
 };
 
 /**
