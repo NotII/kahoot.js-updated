@@ -4,7 +4,8 @@
   "description": "Answer, Join Kahoot Quizzes with nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/join_leave.js"
+    "test": "node tests/join_leave.js",
+    "pretty": "npx prettier --write ."
   },
   "keywords": [
     "kahoot",
